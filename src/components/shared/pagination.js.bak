@@ -1,0 +1,51 @@
+import React from "react";
+import PropTypes from "prop-types";
+import _ from "lodash";
+import ClayPaginationBar from "@clayui/pagination-bar";
+import ClayPagination from "@clayui/pagination";
+import ClayButton from "@clayui/button";
+import ClayIcon from "@clayui/icon";
+import spritemap from "../../assets/images/icons/icons.svg";
+
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
+  const pagesCount = Math.ceil(itemsCount / pageSize);
+  if (pagesCount === 1) return null;
+  const pages = _.range(1, pagesCount + 1);
+
+  return (
+    <ClayPaginationBar>
+      <ClayPaginationBar.DropDown
+        items={[
+          {
+            label: "10",
+            onClick: () => {},
+          },
+        ]}
+        trigger={
+          <ClayButton displayType="unstyled">
+            {"10 items per page"}
+            <ClayIcon spritemap={spritemap} symbol="caret-double-l" />
+          </ClayButton>
+        }
+      />
+
+      <ClayPaginationBar.Results>
+        {"Showing a handful of items..."}
+      </ClayPaginationBar.Results>
+
+      <ClayPagination>
+        <ClayPagination.Item>{1}</ClayPagination.Item>
+        <ClayPagination.Ellipsis items={[2, 3, 4, 5]} />
+        <ClayPagination.Item>{"End"}</ClayPagination.Item>
+      </ClayPagination>
+    </ClayPaginationBar>
+  );
+};
+
+Pagination.propTypes = {
+  itemsCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+};
+export default Pagination;
