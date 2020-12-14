@@ -9,7 +9,7 @@ import ClayManagementToolbar, {
 } from "@clayui/management-toolbar";
 import spritemap from "../../assets/images/icons/icons.svg";
 
-const Filter = () => {
+const Filter = ({ value, onChange }) => {
   const result = false;
 
   const filterItems = [
@@ -71,8 +71,9 @@ const Filter = () => {
               <ClayInput
                 aria-label="Search"
                 className="form-control input-group-inset input-group-inset-after"
-                defaultValue="Red"
+                defaultValue={value}
                 type="text"
+                onChange={(e) => onChange(e.currentTarget.value)}
               />
               <ClayInput.GroupInsetItem after tag="span">
                 <ClayButtonWithIcon

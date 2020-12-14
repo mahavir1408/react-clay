@@ -47,8 +47,8 @@ class Projects extends Component {
     } = this.state;
     let filtered = allProjects;
     if (searchQuery) {
-      filtered = allProjects.filter((m) =>
-        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      filtered = allProjects.filter((p) =>
+        p.project.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
